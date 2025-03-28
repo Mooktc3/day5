@@ -1,0 +1,48 @@
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
+    <p>ป้อนตัวเลขเพื่อแยกตัวประกอบ</p>
+    <input type="number" id="numberInput" placeholder="ใส่ตัวเลข">
+    <button onclick="factorize()">แยกตัวประกอบ</button>
+
+    <hr>
+    <p id="factor"></p>
+
+    <script>
+        function numfac(n) 
+        {
+            let d = 2;
+            let factors = [];
+            
+            while (n > 1) 
+            {
+                if (n % d === 0) 
+                {
+                    factors.push(d);
+                    n /= d;
+                } else 
+                {
+                    d++;
+                }
+            }
+
+            return factors.length > 0 ? factors.join(" × ") : n;
+        }
+
+        function factorize() 
+        {
+            let num = parseInt(document.getElementById("numberInput").value);
+            if (isNaN(num) || num <= 0) 
+            {
+                document.getElementById("factor").innerHTML = "กรุณาป้อนตัวเลขที่มากกว่า 0";
+                return;
+            }
+            document.getElementById("factor").innerHTML = `${num} = ${numfac(num)}`;
+        }
+    </script>
+
+</body>
+</html>
